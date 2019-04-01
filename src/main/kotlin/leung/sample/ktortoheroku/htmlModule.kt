@@ -5,12 +5,14 @@ import io.ktor.application.call
 import io.ktor.application.install
 import io.ktor.features.AutoHeadResponse
 import io.ktor.features.DefaultHeaders
+import io.ktor.features.HSTS
 import io.ktor.html.respondHtml
 import io.ktor.routing.get
 import io.ktor.routing.routing
 import kotlinx.html.*
 
 fun Application.htmlModule() {
+    install(HSTS)
     install(DefaultHeaders)
     install(AutoHeadResponse)
     routing {
