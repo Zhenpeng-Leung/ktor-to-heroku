@@ -1,0 +1,6 @@
+{
+"name": "KtorToHeroku",
+"description": "这是一个可将Ktor部署Heroku的例子",
+"image": "heroku/java",
+"addons": [ "heroku-postgresql" ]
+}
