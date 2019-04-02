@@ -5,7 +5,6 @@ import io.ktor.server.engine.applicationEngineEnvironment
 import io.ktor.server.engine.connector
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
-import kotlin.random.Random
 
 
 fun main() {
@@ -14,7 +13,7 @@ fun main() {
         // 服务器端口
         connector {
             // 如果服务器定义了环境变量，使用服务器定义，而不是硬编码!
-            host = "localhost"
+            host = "127.0.0.1"
             port = System.getenv("PORT")?.toInt() ?: 1080
         }
         //watchPaths = listOf("build/classes") // 检测文件改动,动态载入.在最终发布时,应该注释此行,否则服务器会有性能损失!
