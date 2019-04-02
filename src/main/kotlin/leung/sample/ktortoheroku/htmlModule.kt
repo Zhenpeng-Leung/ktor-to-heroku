@@ -3,9 +3,7 @@ package leung.sample.ktortoheroku
 import io.ktor.application.Application
 import io.ktor.application.call
 import io.ktor.application.install
-import io.ktor.features.AutoHeadResponse
-import io.ktor.features.DefaultHeaders
-import io.ktor.features.HSTS
+import io.ktor.features.*
 import io.ktor.html.respondHtml
 import io.ktor.routing.get
 import io.ktor.routing.routing

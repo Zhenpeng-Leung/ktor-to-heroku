@@ -3,6 +3,8 @@ package leung.sample.ktortoheroku
 import io.ktor.application.Application
 import io.ktor.application.ApplicationCall
 import io.ktor.application.call
+import io.ktor.application.install
+import io.ktor.features.HSTS
 import io.ktor.http.ContentType
 import io.ktor.response.respondText
 import io.ktor.routing.get

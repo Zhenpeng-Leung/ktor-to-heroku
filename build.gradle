@@ -9,22 +9,32 @@ repositories {
 }
 
 dependencies {
+    //val logbackVersion: String by project
+    //val ktorVersion: String by project
+    //val kotlinCssVersion: String by project
+
     // 必须要引入的Kotlin和Logback
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8") // 使用plugins版本,无需再定义
-    implementation("ch.qos.logback:logback-classic:$logbackVersion")
+    compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8") // 使用plugins版本,无需再定义
+    compile("ch.qos.logback:logback-classic:$logbackVersion")
     // 项目需要的工件
-    implementation("io.ktor:ktor-server-netty:$ktorVersion") // Netty引擎
-    implementation("io.ktor:ktor-html-builder:$ktorVersion") // HTML DSL
-    implementation("org.jetbrains:kotlin-css-jvm:$kotlinCssVersion") // CSS DSL
+    compile("io.ktor:ktor-server-netty:$ktorVersion") // Netty引擎
+    compile("io.ktor:ktor-html-builder:$ktorVersion") // HTML DSL
+    compile("org.jetbrains:kotlin-css-jvm:$kotlinCssVersion") // CSS DSL
 }
 
 application.mainClassName = "leung.sample.ktortoheroku.ApplicationKt" // 主类名.注: Kotlin编译的类默认带有'Kt'.
 java.sourceCompatibility = JavaVersion.VERSION_1_8 // Java兼容编译
 
+tasks.named("jar", org.gradle.jvm.tasks.Jar.class) {
+    configurations.runtime {
+        forEach { from(zipTree(it)) }
+    }
+    manifest.attributes("Main-Class": application.mainClassName)
+}
+
 // 创建一个名为 'stage' 的任务,必须是 'stage',当git push到Heroku远程库是会触发这个任务
-tasks.register("stage"){
+tasks.register("stage") {
     // 任务依赖于 `clean`和`installDist`, `installDist`是`application`插件内建的任务,
     // 作用是安装项目到指定目录,默认路径为:"$rootDir/build/install/${project.name}".
-    dependsOn("clean", "installDist")
-    tasks["installDist"].mustRunAfter("clean") // 任务`installDist`必须在`clean`之后运行.
+    dependsOn("assemble")
 }

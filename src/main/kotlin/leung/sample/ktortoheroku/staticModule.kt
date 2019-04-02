@@ -1,6 +1,8 @@
 package leung.sample.ktortoheroku
 
 import io.ktor.application.Application
+import io.ktor.application.install
+import io.ktor.features.HSTS
 import io.ktor.http.content.resources
 import io.ktor.http.content.static
 import io.ktor.routing.routing
