@@ -1,1 +1,1 @@
-web: build/install/KtorToHeroku/bin/KtorToHeroku
+web: java -jar build/libs/KtorToHeroku.jar
